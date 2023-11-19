@@ -153,6 +153,7 @@ const getbgColor = (type) => {
   }
 };
 
+// Type selection handler 
 selectType.addEventListener("change", handleSelection);
 
 function handleSelection() {
@@ -167,7 +168,35 @@ function handleSelection() {
     if (filteredPokemons.length > 0) {
       displayPokemon(filteredPokemons);
     } else {
-      // Handle case when there are no matching pokemons
+      pokemonsWrapper.innerHTML=""
+    }
+    }
+    nameInput.value=""
+}
+
+
+// Search handler
+nameInput.addEventListener("input", searchhandler);
+
+function searchhandler (){
+  const searchValue = nameInput.value.toLowerCase();
+
+  if (searchValue === "") {
+    displayPokemon(filteredPokemons);
+  } else {
+    if (filteredPokemons.length === 0) {
+      filteredPokemons = allPokemons;
+    }
+
+    const temp = filteredPokemons.filter((item) =>
+      item.name.toLowerCase().includes(searchValue)
+    );
+
+    if (temp.length > 0) {
+      displayPokemon(temp);
+    } else {
+      pokemonsWrapper.innerHTML = "";
     }
   }
-}
+};
+
