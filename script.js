@@ -1,5 +1,6 @@
 const nameInput = document.getElementById("name_input");
 const selectType = document.getElementById("select_type");
+const resetBtn = document.getElementById("resetBtn");
 const pokemonsWrapper = document.getElementById("pokemons_wrapper");
 
 // fetch Types for select box
@@ -199,4 +200,12 @@ function searchhandler (){
     }
   }
 };
+
+// Reset handler
+
+resetBtn.addEventListener("click", () => {
+    nameInput.value = "";
+    selectType.value = "all"
+    displayPokemon(allPokemons)
+})
 
